@@ -42,12 +42,12 @@ const AppState = (props) => {
         user_Order();
     }, [token, reload]);
 
-    useEffect(async () => {
+    useEffect(() => {
         let lstoken = localStorage.getItem('token')
         // console.log("is token",lstoken)
         if (lstoken) {
             setToken(lstoken)
-            await setIsAuthenticated(true)
+            setIsAuthenticated(true)
         }
         // setToken(localStorage.getItem('token'))
     }, [])
@@ -99,13 +99,13 @@ const AppState = (props) => {
         // alert(api.data.message);
         // console.log("User login", api.data);
         setToken(api.data.token)
-        setIsAuthenticated(prev => !prev);
+        setIsAuthenticated(true);
         localStorage.setItem('token', api.data.token)
         return api.data;
     }
     // logout user
     const logout = async() => {
-        setIsAuthenticated(prev => !prev);
+        setIsAuthenticated(false);
         setToken("")
         await localStorage.removeItem('token');
         toast.success("logout successfully...", {
@@ -133,7 +133,7 @@ const AppState = (props) => {
             });
 
             setUser(api.data.user)
-            setIsAuthenticated(true)
+            // setIsAuthenticated(true)
             // console.log("user profile=",api.data);
             // setProducts(api.data.products);
             // setFilteredData(api.data.products)
