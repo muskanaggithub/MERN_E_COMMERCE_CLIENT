@@ -104,10 +104,10 @@ const AppState = (props) => {
         return api.data;
     }
     // logout user
-    const logout = () => {
+    const logout = async() => {
         setIsAuthenticated(prev => !prev);
         setToken("")
-        localStorage.removeItem('token')
+        await localStorage.removeItem('token');
         toast.success("logout successfully...", {
             position: "top-right",
             autoClose: 1500,
